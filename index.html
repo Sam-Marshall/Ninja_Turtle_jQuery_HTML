@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cowabunga!!</title>
+	<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+	<script src="https://code.jquery.com/jquery.js"></script>
+</head>
+<body>
+
+	<div id="container">
+		<h3>Your Options</h3>	
+		<div id="rowOne"></div>
+			
+			<div class="playerContainer" id="Raphael">
+				<span class="fighterName">Raphael</span>
+				<img src="./assets/images/raphaelSelector.gif">
+				<span class="fighterLife RaphaelLife">35</span>
+			</div>
+			
+			<div class="playerContainer"  id="Donatello">
+				<span class="fighterName">Donatello</span>
+				<img src="./assets/images/donatelloSelector.gif">
+				<span class="fighterLife DonatelloLife">45</span>			
+			</div>
+			
+			<div class="playerContainer"  id="Leonardo" >
+				<span class="fighterName">Leonardo</span>		
+				<img src="./assets/images/leonardoSelector.gif">
+				<span class="fighterLife LeonardoLife">55</span>
+			</div>
+		<h3>Your Fighter</h3>
+		<div id="rowTwo"></div>
+		<div id="fightScene">
+			<img src="./assets/images/fightScene.jpg">
+		</div>
+		<h3>Your Available Enemies</h3>
+		<div id="rowThree"></div>
+		<div id="fightStats"></div>
+		<h3>Defender</h3>
+		<div id="rowFour"></div>
+		<button id="attackButton">Attack</button>
+		<button id="resetButton">Reset</button>		
+	</div>
+
+	<script>
+	// $(document).ready(function(){
+
+	var fighterPicked = false;
+	var fighter = "";
+	var defender = "";
+	var fighterLife = 1;
+	var fighterStrength = 0;
+	var defenderStrength = 0;
+	var defenderLife = 1;
+
+	function fighterStatsChange(x, y){
+		if (x === "Raphael"){
+			$(".RaphaelLife").html(fighterLife);
+		}
+		else if (x === "Donatello"){
+			$(".DonatelloLife").html(fighterLife);			
+		}
+		else if (x === "Leonardo"){
+			$(".LeonardoLife").html(fighterLife);			
+		}
+		
+		if (y === "Raphael"){
+			$(".RaphaelLife").html(defenderLife);
+		}
+		else if (y === "Donatello"){
+			$(".DonatelloLife").html(defenderLife);			
+		}
+		else if (y === "Leonardo"){
+			$(".LeonardoLife").html(defenderLife);			
+		}
+	}
+	function checkIfDead(x, y, a, b){
+		if (x <= 0 && a === "Raphael"){
+			$("#Raphael").css('display', 'none');
+			$("#rowTwo").append(fighter.toUpperCase() + " has died. You lose! Press reset to play again!");
+		}
+		else if (x <= 0 && a === "Donatello"){
+			$("#Donatello").css('display', 'none');
+			$("#rowTwo").append(fighter.toUpperCase() + " has died. You lose! Press reset to play again!");			
+		}
+		else if (x <= 0 && a === "Leonardo"){
+			$("#Leonardo").css('display', 'none');
+			$("#rowTwo").append(fighter.toUpperCase() + " has died. You lose! Press reset to play again!");			
+		}
+
+		if (y<=0 && b === "Raphael"){
+			$("#Raphael").css('display', 'none');
+			$("#rowFour").append(defender.toUpperCase() + " has been defeated. You win! Please choose another opponent!");			
+		}
+		else if (y<=0 && b === "Donatello"){
+			$("#Donatello").css('display', 'none');
+			$("#rowFour").append(defender.toUpperCase() + " has been defeated. You win! Please choose another opponent!");			
+		}
+		else if (y<=0 && b === "Leonardo"){
+			$("#Leonardo").css('display', 'none');
+			$("#rowFour").append(defender.toUpperCase() + " has been defeated. You win! Please choose another opponent!");			
+		}
+	}
+
+	// function gamePlay(){
+
+		$("#Raphael").on('click', function(){
+			if (fighterPicked === false){
+
+				$("#rowTwo").append($("#Raphael"));
+				$("#rowThree").append($("#Donatello"));
+				$("#rowThree").append($("#Leonardo"));	
+				fighterPicked = true;	
+				fighter = "Raphael";
+				fighterLife = 35;
+				fighterStrength = 5;
+				console.log(fighterPicked);	
+				console.log(fighter);
+
+		}
+			else if (fighterPicked === true && fighter != "Raphael"){
+
+				$("#rowFour").html($("#Raphael"));
+				defender = "Raphael";
+				defenderStrength = 5;
+				defenderLife = 35;
+
+			}
+		});	
+
+		$("#Donatello").on('click', function(){
+			if (fighterPicked === false){
+
+				$("#rowTwo").append($("#Donatello"));
+				$("#rowThree").append($("#Raphael"));
+				$("#rowThree").append($("#Leonardo"));
+				fighterPicked = true;	
+				fighter = "Donatello";
+				fighterLife = 45;
+				fighterStrength = 10;				
+				console.log(fighterPicked);	
+				console.log(fighter);
+		}
+			else if (fighterPicked === true && fighter != "Donatello"){
+
+				$("#rowFour").html($("#Donatello"));
+				defender = "Donatello";				
+				defenderStrength = 10;
+				defenderLife = 45;
+
+			}
+			
+		});	
+
+		$("#Leonardo").on('click', function(){
+			if (fighterPicked === false){	
+
+				$("#rowTwo").append($("#Leonardo"));
+				$("#rowThree").append($("#Raphael"));
+				$("#rowThree").append($("#Donatello"));
+				fighterPicked = true;
+				fighter = "Leonardo";
+				fighterLife = 55;
+				fighterStrength = 15;				
+				console.log(fighterPicked);	
+				console.log(fighter);
+		}	
+			else if (fighterPicked === true && fighter != "Leonardo"){
+
+				$("#rowFour").html($("#Leonardo"));
+				defender = "Leonardo";				
+				defenderStrength = 15;
+				defenderLife = 55;				
+
+			}
+
+		});		
+		
+		$("#attackButton").on('click', function(){
+
+			if (defenderLife > 0 && fighterLife > 0) {
+			
+			defenderLife = defenderLife - fighterStrength;
+
+			fighterLife = fighterLife - defenderStrength;
+
+			$("#fightStats").html(fighter.toUpperCase() + " suffered " + defenderStrength + " damage.\n");
+			$("#fightStats").append("\n" + defender.toUpperCase() + " suffered " + fighterStrength + " damage.");
+			fighterStrength = fighterStrength + 5;	
+			checkIfDead(fighterLife, defenderLife, fighter, defender);
+			fighterStatsChange(fighter, defender);
+
+			}		
+
+
+		});
+		
+		$("#resetButton").on('click', function(){
+			$("#rowOne").append($("#Raphael"));
+			$("#rowOne").append($("#Donatello"));
+			$("#rowOne").append($("#Leonardo"));
+			$("#Raphael").css('display', 'inline-block');
+			$("#Donatello").css('display', 'inline-block');
+			$("#Leonardo").css('display', 'inline-block');
+			$(".RaphaelLife").html(35);
+			$(".DonatelloLife").html(45);
+			$(".LeonardoLife").html(55);
+			$("#rowTwo").html("");
+			$("#rowThree").html("");
+			$("#rowFour").html("");
+			$("#fightStats").html("");
+			fighterPicked = false;
+			fighter = "";
+			defender = "";
+			fighterLife = 1;
+			fighterStrength = 0;
+			defenderStrength = 0;
+			defenderLife = 1;				
+			
+		});
+		// }
+
+		// gamePlay();
+	// });
+
+
+	</script>
+
+
+</body>
+</html>

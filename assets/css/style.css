@@ -1,0 +1,43 @@
+#container{
+	display: inline-block;
+}
+
+.playerContainer img{
+	height: 75px;
+	width: 115px;
+	margin: 5px;
+	border-style: solid;
+	border-color: green;
+	border-width: 5px;
+	border-radius: 15px;
+}
+
+.fighterName{
+	position: absolute;
+	left: 50px;
+	top: 0px;			
+}
+
+.fighterLife{
+	position: absolute;
+	left: 75px;
+	bottom: 0px;
+	text-align: center;			
+}
+
+.playerContainer{
+	position: relative;
+	background: lavender;
+	display: inline-block;
+	padding: 15px;
+	margin: 10px;
+	border-radius: 15px;
+}
+
+#fightScene{
+	height: 50%;
+	width: 75%;
+	align-content: center;
+	display: inline-block;
+	position: relative;
+}
