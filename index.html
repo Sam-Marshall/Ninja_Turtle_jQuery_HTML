@@ -2,48 +2,106 @@
 <html>
 <head>
 	<title>Cowabunga!!</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	
 	<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 	<script src="https://code.jquery.com/jquery.js"></script>
 </head>
 <body>
 
-	<div id="container">
-		<h3>Your Options</h3>	
-		<div id="rowOne"></div>
-			
-			<div class="playerContainer" id="Raphael">
-				<span class="fighterName">Raphael</span>
-				<img src="./assets/images/raphaelSelector.gif">
-				<span class="fighterLife RaphaelLife">35</span>
-			</div>
-			
-			<div class="playerContainer"  id="Donatello">
-				<span class="fighterName">Donatello</span>
-				<img src="./assets/images/donatelloSelector.gif">
-				<span class="fighterLife DonatelloLife">45</span>			
-			</div>
-			
-			<div class="playerContainer"  id="Leonardo" >
-				<span class="fighterName">Leonardo</span>		
-				<img src="./assets/images/leonardoSelector.gif">
-				<span class="fighterLife LeonardoLife">55</span>
-			</div>
-		<h3>Your Fighter</h3>
-		<div id="rowTwo"></div>
-		<div id="fightScene">
-			<img src="./assets/images/fightScene.jpg">
+	<div class="container-fluid">
+		<div class="row">
+			<span class="text-center">
+				<img class="center-block titleLogo" src="./assets/images/titleLogo.png">
+<!-- 				<h1 class="text-center">Teenaged Mutant Ninja Turtles</h1> -->
+			</span>
+
 		</div>
-		<h3>Your Available Enemies</h3>
-		<div id="rowThree"></div>
-		<div id="fightStats"></div>
-		<h3>Defender</h3>
-		<div id="rowFour"></div>
-		<button id="attackButton">Attack</button>
-		<button id="resetButton">Reset</button>		
+		
+		<div class="row">
+			
+			<div id="fighterOptions" class="col-md-12 text-center"></div>
+				<h3 class="text-center deleteOne">Choose Your Turtle</h3>
+
+				<div class="players">
+				
+				<div class="playerContainer text-center" id="Raphael">
+					<span class="fighterName">Raphael</span>
+					<img src="./assets/images/raphaelSelector.gif">
+					<span class="fighterLife RaphaelLife">40</span>
+				</div>
+				
+				<div class="playerContainer text-center"  id="Donatello">
+					<span class="fighterName">Donatello</span>
+					<img src="./assets/images/donatelloSelector.gif">
+					<span class="fighterLife DonatelloLife">50</span>			
+				</div>
+				
+				<div class="playerContainer text-center"  id="Leonardo" >
+					<span class="fighterName">Leonardo</span>		
+					<img src="./assets/images/leonardoSelector.gif">
+					<span class="fighterLife LeonardoLife">55</span>
+				</div>
+
+				<div class="playerContainer text-center"  id="Michelangelo" >
+					<span class="fighterName">Michelangelo</span>		
+					<img src="./assets/images/michelangeloSelector.gif">
+					<span class="fighterLife MichelangeloLife">45</span>
+				</div>	
+				</div>			
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-md-4">
+				<h3>Your Fighter</h3>
+				<div id="fighterChoice"></div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="row col-md-12 text-center">
+					<button id="attackButton" class="btn btn-lg btn-danger">Attack</button>
+				</div>
+				<div class="row col-md-12 text-center">
+
+				<span id="fightStats"></span>
+				</div>
+
+			</div>
+
+			<div class="col-md-4">
+				<h3>Defender</h3>
+				<div id="defenderChoice"></div>
+			</div>
+
+		</div>	
+
+		<div class="row">
+			<div class="col-md-8">
+				<h3>Your Available Enemies</h3>
+				<div id="enemiesAvailable"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class= "col-md-6">
+
+				<button id="resetButton" class="btn btn-lg btn-primary">Reset</button>	
+
+			</div>
+			<div class="col-md-6">
+			</div>
+		</div>
+
+<!-- 		<div id="fightScene">
+			<img src="./assets/images/fightScene.jpg">
+		</div> -->
+		
+
 	</div>
 
-	<script>
-	// $(document).ready(function(){
+	<script type="text/javascript">
+
+	window.onload = function(){
 
 	var fighterPicked = false;
 	var fighter = "";
@@ -63,6 +121,9 @@
 		else if (x === "Leonardo"){
 			$(".LeonardoLife").html(fighterLife);			
 		}
+		else if (x === "Michelangelo"){
+			$(".MichelangeloLife").html(fighterLife);			
+		}
 		
 		if (y === "Raphael"){
 			$(".RaphaelLife").html(defenderLife);
@@ -73,57 +134,99 @@
 		else if (y === "Leonardo"){
 			$(".LeonardoLife").html(defenderLife);			
 		}
+		else if (y === "Michelangelo"){
+			$(".MichelangeloLife").html(defenderLife);
+		}
 	}
+	
 	function checkIfDead(x, y, a, b){
 		if (x <= 0 && a === "Raphael"){
-			$("#Raphael").css('display', 'none');
-			$("#rowTwo").append(fighter.toUpperCase() + " has died. You lose! Press reset to play again!");
+			// $("#Raphael").css('display', 'none');
+			$("#fighterChoice").empty();
+			// $("#fighterOptions").append("#Raphael");
+			$("#fighterChoice").append(fighter.toUpperCase() + " has died. You lose! Press reset to play again!");
+			fighter = "";
 		}
 		else if (x <= 0 && a === "Donatello"){
-			$("#Donatello").css('display', 'none');
-			$("#rowTwo").append(fighter.toUpperCase() + " has died. You lose! Press reset to play again!");			
+			// $("#Donatello").css('display', 'none');
+			$("#fighterChoice").empty();
+			// $("#fighterOptions").append("#Donatello");
+			$("#fighterChoice").append(fighter.toUpperCase() + " has died. You lose! Press reset to play again!");
+			fighter = "";			
 		}
 		else if (x <= 0 && a === "Leonardo"){
-			$("#Leonardo").css('display', 'none');
-			$("#rowTwo").append(fighter.toUpperCase() + " has died. You lose! Press reset to play again!");			
+			// $("#Leonardo").css('display', 'none');
+			$("#fighterChoice").empty();
+			// $("#fighterOptions").append("#Leonardo");			
+			$("#fighterChoice").append(fighter.toUpperCase() + " has died. You lose! Press reset to play again!");
+			fighter = "";			
 		}
+		else if (x <= 0 && a === "Michelangelo"){
+			// $("#Michelangelo").css('display', 'none');
+			$("#fighterChoice").empty();			
+			// $("#fighterOptions").append("#Michelangelo");			
+			$("#fighterChoice").append(fighter.toUpperCase() + " has died. You lose! Press reset to play again!");
+			fighter = "";			
+		}		
 
 		if (y<=0 && b === "Raphael"){
-			$("#Raphael").css('display', 'none');
-			$("#rowFour").append(defender.toUpperCase() + " has been defeated. You win! Please choose another opponent!");			
+			// $("#Raphael").css('display', 'none');
+			$("#defenderChoice").empty();
+			// $("#fighterOptions").append("#Raphael");
+			$("#defenderChoice").append(defender.toUpperCase() + " has been defeated. You win! Please choose another opponent!");
+			defender = "";			
 		}
 		else if (y<=0 && b === "Donatello"){
-			$("#Donatello").css('display', 'none');
-			$("#rowFour").append(defender.toUpperCase() + " has been defeated. You win! Please choose another opponent!");			
+			// $("#Donatello").css('display', 'none');
+			$("#defenderChoice").empty();
+			// $("#fighterOptions").append("#Donatello");
+			$("#defenderChoice").append(defender.toUpperCase() + " has been defeated. You win! Please choose another opponent!");
+			defender = "";			
 		}
 		else if (y<=0 && b === "Leonardo"){
-			$("#Leonardo").css('display', 'none');
-			$("#rowFour").append(defender.toUpperCase() + " has been defeated. You win! Please choose another opponent!");			
+			// $("#Leonardo").css('display', 'none');
+			$("#defenderChoice").empty();
+			// $("#fighterOptions").append("#Leonardo");
+			$("#defenderChoice").append(defender.toUpperCase() + " has been defeated. You win! Please choose another opponent!");
+			defender = "";			
 		}
+		else if (y<=0 && b === "Michelangelo"){
+			// $("#Michelangelo").css('display', 'none');
+			$("#defenderChoice").empty();
+			// $("#fighterOptions").append("#Michelangelo");
+			$("#defenderChoice").append(defender.toUpperCase() + " has been defeated. You win! Please choose another opponent!");
+			defender = "";			
+		}		
 	}
 
 	// function gamePlay(){
 
 		$("#Raphael").on('click', function(){
 			if (fighterPicked === false){
-
-				$("#rowTwo").append($("#Raphael"));
-				$("#rowThree").append($("#Donatello"));
-				$("#rowThree").append($("#Leonardo"));	
+				
+				$("#fighterChoice").append($("#Raphael"));
+				$("#enemiesAvailable").append($("#Donatello"));
+				$("#enemiesAvailable").append($("#Leonardo"));	
+				$("#enemiesAvailable").append($("#Michelangelo"));
+				$(".deleteOne").empty();				
+				$(".deleteOne").html("Choose Your Opponent");
+				// document.getElementById("delete").innerHTML = "";
 				fighterPicked = true;	
 				fighter = "Raphael";
-				fighterLife = 35;
-				fighterStrength = 5;
+				fighterLife = 40;
+				fighterStrength = 10;
 				console.log(fighterPicked);	
 				console.log(fighter);
 
 		}
 			else if (fighterPicked === true && fighter != "Raphael"){
 
-				$("#rowFour").html($("#Raphael"));
+				$("#defenderChoice").html($("#Raphael"));
+				$("#fightStats").empty();				
 				defender = "Raphael";
-				defenderStrength = 5;
-				defenderLife = 35;
+				defenderStrength = 10;
+				defenderLife = 40;
+				$(".deleteOne").html("FIGHT!");				
 
 			}
 		});	
@@ -131,22 +234,27 @@
 		$("#Donatello").on('click', function(){
 			if (fighterPicked === false){
 
-				$("#rowTwo").append($("#Donatello"));
-				$("#rowThree").append($("#Raphael"));
-				$("#rowThree").append($("#Leonardo"));
+				$("#fighterChoice").append($("#Donatello"));
+				$("#enemiesAvailable").append($("#Raphael"));
+				$("#enemiesAvailable").append($("#Leonardo"));
+				$("#enemiesAvailable").append($("#Michelangelo"));
+				$(".deleteOne").empty();
+				$(".deleteOne").html("Choose Your Opponent");				
 				fighterPicked = true;	
 				fighter = "Donatello";
-				fighterLife = 45;
+				fighterLife = 50;
 				fighterStrength = 10;				
 				console.log(fighterPicked);	
 				console.log(fighter);
 		}
 			else if (fighterPicked === true && fighter != "Donatello"){
 
-				$("#rowFour").html($("#Donatello"));
+				$("#defenderChoice").html($("#Donatello"));
+				$("#fightStats").empty();			
 				defender = "Donatello";				
 				defenderStrength = 10;
-				defenderLife = 45;
+				defenderLife = 50;
+				$(".deleteOne").html("FIGHT!");					
 
 			}
 			
@@ -155,9 +263,13 @@
 		$("#Leonardo").on('click', function(){
 			if (fighterPicked === false){	
 
-				$("#rowTwo").append($("#Leonardo"));
-				$("#rowThree").append($("#Raphael"));
-				$("#rowThree").append($("#Donatello"));
+				$("#fighterChoice").append($("#Leonardo"));
+				$("#enemiesAvailable").append($("#Raphael"));
+				$("#enemiesAvailable").append($("#Donatello"));
+				$("#enemiesAvailable").append($("#Michelangelo"));
+				$(".deleteOne").empty();			
+				$(".deleteOne").html("Choose Your Opponent");
+
 				fighterPicked = true;
 				fighter = "Leonardo";
 				fighterLife = 55;
@@ -167,28 +279,70 @@
 		}	
 			else if (fighterPicked === true && fighter != "Leonardo"){
 
-				$("#rowFour").html($("#Leonardo"));
+				$("#defenderChoice").html($("#Leonardo"));
+				$("#fightStats").empty();			
 				defender = "Leonardo";				
 				defenderStrength = 15;
-				defenderLife = 55;				
+				defenderLife = 55;	
+				$(".deleteOne").html("FIGHT!");								
 
 			}
 
-		});		
+		});	
+
+		$("#Michelangelo").on('click', function(){
+			if (fighterPicked === false){	
+
+				$("#fighterChoice").append($("#Michelangelo"));
+				$("#enemiesAvailable").append($("#Raphael"));
+				$("#enemiesAvailable").append($("#Donatello"));
+				$("#enemiesAvailable").append($("#Leonardo"));
+				$(".deleteOne").empty();			
+				$(".deleteOne").html("Choose Your Opponent");
+
+				fighterPicked = true;
+				fighter = "Michelangelo";
+				fighterLife = 45;
+				fighterStrength = 15;				
+				console.log(fighterPicked);	
+				console.log(fighter);
+		}	
+			else if (fighterPicked === true && fighter != "Michelangelo"){
+
+				$("#defenderChoice").html($("#Michelangelo"));
+				$("#fightStats").empty();				
+				defender = "Michelangelo";				
+				defenderStrength = 15;
+				defenderLife = 45;
+				$(".deleteOne").html("FIGHT!");									
+
+			}
+
+		});				
 		
 		$("#attackButton").on('click', function(){
 
-			if (defenderLife > 0 && fighterLife > 0) {
+			if (defenderLife > 0 && fighterLife > 0 && fighter != "" && defender != "") {
 			
-			defenderLife = defenderLife - fighterStrength;
+				defenderLife = defenderLife - fighterStrength;
 
-			fighterLife = fighterLife - defenderStrength;
+				if (defenderLife <= 0){
 
-			$("#fightStats").html(fighter.toUpperCase() + " suffered " + defenderStrength + " damage.\n");
-			$("#fightStats").append("\n" + defender.toUpperCase() + " suffered " + fighterStrength + " damage.");
-			fighterStrength = fighterStrength + 5;	
-			checkIfDead(fighterLife, defenderLife, fighter, defender);
-			fighterStatsChange(fighter, defender);
+					$("#fightStats").empty();
+					
+					$("#fightStats").append("\n" + defender.toUpperCase() + " suffered " + fighterStrength + " damage.");					
+					checkIfDead(fighterLife, defenderLife, fighter, defender);
+				}
+				else{
+
+				fighterLife = fighterLife - defenderStrength;
+
+					$("#fightStats").html(fighter.toUpperCase() + " suffered " + defenderStrength + " damage.\n");
+					$("#fightStats").append("\n" + defender.toUpperCase() + " suffered " + fighterStrength + " damage.");
+					fighterStrength = fighterStrength + 8;	
+					checkIfDead(fighterLife, defenderLife, fighter, defender);
+					fighterStatsChange(fighter, defender);
+			}
 
 			}		
 
@@ -196,28 +350,41 @@
 		});
 		
 		$("#resetButton").on('click', function(){
-			$("#rowOne").append($("#Raphael"));
-			$("#rowOne").append($("#Donatello"));
-			$("#rowOne").append($("#Leonardo"));
-			$("#Raphael").css('display', 'inline-block');
-			$("#Donatello").css('display', 'inline-block');
-			$("#Leonardo").css('display', 'inline-block');
-			$(".RaphaelLife").html(35);
-			$(".DonatelloLife").html(45);
-			$(".LeonardoLife").html(55);
-			$("#rowTwo").html("");
-			$("#rowThree").html("");
-			$("#rowFour").html("");
-			$("#fightStats").html("");
-			fighterPicked = false;
-			fighter = "";
-			defender = "";
-			fighterLife = 1;
-			fighterStrength = 0;
-			defenderStrength = 0;
-			defenderLife = 1;				
+
+			if (fighterPicked === true){
+
+				// $(".deleteOne").empty();
+				$(".deleteOne").html($("<h3>Choose Your Turtle</h3>"));
+
+				$(".players").append($("#Raphael"));
+				$(".players").append($("#Donatello"));
+				$(".players").append($("#Leonardo"));
+				$(".players").append($("#Michelangelo"));			
+				// $("#Raphael").css('display', 'inline-block');
+				// $("#Donatello").css('display', 'inline-block');
+				// $("#Leonardo").css('display', 'inline-block');
+				// $("#Michelangelo").css('display', 'inline-block');
+				$(".RaphaelLife").html(40);
+				$(".DonatelloLife").html(50);
+				$(".LeonardoLife").html(55);
+				$(".MichelangeloLife").html(45);
+				$("#fighterChoice").html("");
+				$("#enemiesAvailable").html("");
+				$("#defenderChoice").html("");
+				$("#fightStats").html("");
+				fighterPicked = false;
+				fighter = "";
+				defender = "";
+				fighterLife = 1;
+				fighterStrength = 0;
+				defenderStrength = 0;
+				defenderLife = 1;
+
+			}				
 			
 		});
+
+	};	
 		// }
 
 		// gamePlay();
