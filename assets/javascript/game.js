@@ -321,10 +321,11 @@
 
 					$fightStats.html(fighter.toUpperCase() + " suffered " + defenderStrength + " damage.\n");
 					$fightStats.append("\n" + defender.toUpperCase() + " suffered " + fighterStrength + " damage.");
-					fighterStrength = fighterStrength + 9;	
+					fighterStrength = fighterStrength + 10;	
 					checkIfDead(fighterLife, defenderLife, fighter, defender);
 						if (fighterDefeated === true){
-							alert("Your Turtle has lost!");
+							console.log(fighter);
+							alert("Oh no! You have been defeated by " + defender.toUpperCase() + "!");
 							resetGame();
 						}
 					fighterStatsChange(fighter, defender);

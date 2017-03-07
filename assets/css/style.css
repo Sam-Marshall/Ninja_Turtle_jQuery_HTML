@@ -16,6 +16,18 @@ body{
 	color: white;
 	font-size: 24px;
 	padding: 5px;
+	background-color: black;
+}
+
+.playerContainer{
+	position: relative;
+	width: 45%;
+	background: black;
+	display: inline-block;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 15px;
+	overflow: auto;
 }
 
 .playerContainer img{
@@ -26,6 +38,7 @@ body{
 	border-width: 5px;
 	border-radius: 20px;
 	text-align: center;
+	margin: 0;
 }
 .playerContainer:hover{
 	opacity: 0.8;
@@ -35,32 +48,36 @@ body{
 #Raphael img{
 	border-color: red;
 }
-#Raphael{
-	background-color: black;
-}
 
 #Donatello img{
 	border-color: purple;
-}
-#Donatello{
-	background-color: black;
 }
 
 #Leonardo img{
 	border-color: blue;
 }
-#Leonardo{
-	background-color: black;
-}
 
 #Michelangelo img{
 	border-color: orange;
 }
-#Michelangelo{
-	background-color: black;
+
+.fighterName, .fighterLife{
+	position: static;
+	text-align: center;
+	margin: auto;	
+	color: white;	
+	
 }
+
+.fighterName{
+	font-size: 24px;	
+}
+
+.fighterLife{	
+	font-size: 20px;		
+}
+
 .titleLogo{
-/*	background-color: black;*/
 	width: 50%;
 	height: auto;
 }
@@ -74,46 +91,14 @@ body{
 	left: 0px;
 }
 
-.fighterName{
-	position: static;/
-	text-align: center;
-	margin: auto;	
-	color: white;	
-	font-size: 24px;	
-}
-
-.fighterLife{
-	position: static;
-	text-align: center;	
-	margin: auto;
-	color: white;	
-	font-size: 20px;		
-}
-
 #fighterChoice, #defenderChoice{
 	font-size: 24px;
 	color: white;
 }
 
-.playerContainer{
-	position: relative;
-	width: 45%;
-/*	background: lavender;*/
-	display: inline-block;
-	padding: 10px;
-/*	padding-left: 0px;*/
-	margin: 10px;
-	border-radius: 15px;
-	overflow: auto;
-}
-
-h3, h1{
+h3 {
 	color: white;
-}
-h1{
-	background-color: #32CD32;
-/*	display: inline-block;*/
-/*	text-align: center;*/
+	font-size: 36px;
 }
 
 #fightScene{
