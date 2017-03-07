@@ -14,22 +14,22 @@
 
 		"Raphael" : {
 			"Name" : "Raphael",
-			"Life" : 40,
+			"Life" : 45,
 			"Strength": 10 },
 		
 		"Donatello" : {
 			"Name" : "Donatello",
-			"Life" : 50,
+			"Life" : 55,
 			"Strength" : 10 },
 		
 		"Leonardo" : {
 			"Name" : "Leonardo",
-			"Life" : 55,
+			"Life" : 60,
 			"Strength" : 15 },
 		
 		"Michelangelo" : {
 			"Name" : "Michelangelo",
-			"Life" : 45,
+			"Life" : 50,
 			"Strength" : 15 }
 
 	};	
@@ -243,7 +243,6 @@
 				$enemiesAvailable.append($Michelangelo);
 				$deleteOne.empty();			
 				$deleteOne.html("Choose Your Opponent");
-
 				fighterPicked = true;
 				fighter = characterList.Leonardo.Name;
 				fighterLife = characterList.Leonardo.Life;
@@ -273,7 +272,6 @@
 				$enemiesAvailable.append($Leonardo);
 				$deleteOne.empty();			
 				$deleteOne.html("Choose Your Opponent");
-
 				fighterPicked = true;
 				fighter = characterList.Michelangelo.Name;
 				fighterLife = characterList.Michelangelo.Life;
